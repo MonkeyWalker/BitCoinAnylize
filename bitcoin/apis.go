@@ -10,6 +10,7 @@ import (
 //	"strings"
 	"strings"
 	"io"
+	"bytes"
 )
 
 const MARKET  = "market"
@@ -54,13 +55,11 @@ func KeepPingPong(c *websocket.Conn)  {
 			if (dat["ping"] == 0){
 				continue
 			}
-			println(dat)
 			dat["pong"] = dat["ping"]
 			delete(dat,"ping")
 			response,_  := json.Marshal(&dat)
 
 			log.Println(string(response))
-			<-ticker.C //等待两秒
 			err2 := c.WriteMessage(websocket.TextMessage, response)
 			if err2 != nil {
 				log.Println("write:", err2)
@@ -94,11 +93,12 @@ func GetKlineInfo(c *websocket.Conn ,symbolID int, periodID int)(*SubResponse,er
 }
 
 func ReadJSON(c *websocket.Conn,v interface{}) error {
-	_, r, err := c.NextReader()
+	//_, r, err := c.NextReader()
+	_,m,err := c.ReadMessage()
 	if err != nil {
 		return err
 	}
-	depressData := depressGZIPStream(r)
+	depressData := depressGZIPStream(bytes.NewReader(m))
 	err = json.Unmarshal(depressData,v)
 	if err == io.EOF {
 		// One value is expected in the message.
