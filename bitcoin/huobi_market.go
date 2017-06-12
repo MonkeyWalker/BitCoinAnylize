@@ -9,6 +9,8 @@ import (
 	"io/ioutil"
 	"os"
 	"os/signal"
+	"time"
+
 )
 
 
@@ -31,17 +33,16 @@ func HuoBiMarket() {
 	//建立链接
 	c, _, err := websocket.DefaultDialer.Dial(u, nil)
 	defer c.Close()
-	KeepPingPong(c) //维持websocket的链接
+	go ReadJSON(c)
+	go DealWithResponse()
 	if err != nil {
 		log.Fatal("dial:", err)
 	}
-
-	/*res,err  := 	GetKlineInfo(c,myconstants.BTC_SYMBOL,myconstants.MIN_5)
+	time.After(2 * time.Second)
+	SubKlineInfo(c,myconstants.BTC_SYMBOL,myconstants.MIN_5)
 	if err != nil{
 		panic(err)
 	}
-
-	println(res.Ts)*/
 	waitInterrupt()
 }
 

@@ -1,0 +1,49 @@
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: https://k.sosobtc.com
+Sec-WebSocket-Version: 13
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch, br
+Accept-Language: en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4
+Cookie: Hm_lvt_647b37ce6da3a3a7972f5b7edd332547=1496632392,1496816097; Hm_lpvt_647b37ce6da3a3a7972f5b7edd332547=1496817297; io=EYLQgl9RALLJW300CI2e; OID=aEj%252BuelTgv0RAuNv%252FFJPBRCdP8sHYkhYp7gEoCkEXDW0ddulWXUfTloKPUo%252BcXVGWVIurXvGaXz446vSMxVZWgLWojZ%252BEU4jVkpILOHpzWIfLjiZJ3tLy4MPl27XAZkx%7C300d5ac035ea72232419c041f58973e5; theme=dark; _ga=GA1.2.561119685.1496632392; _gid=GA1.2.393849617.1496632392
+Sec-WebSocket-Key: drmO0dHzbYR9gdfgeU4WXQ==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+
+GET wss://io.sosobtc.com/socket.io/?EIO=3&transport=websocket HTTP/1.1
+Host: io.sosobtc.com
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: https://k.sosobtc.com
+Sec-WebSocket-Version: 13
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch, br
+Accept-Language: en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4
+Cookie: Hm_lvt_647b37ce6da3a3a7972f5b7edd332547=1496830130,1496968986,1496977765,1497055775;
+Hm_lpvt_647b37ce6da3a3a7972f5b7edd332547=1497227092; _gat=1; io=7QiYoOO8Z_pF2-C7CmrP;
+ OID=aEj%252BuelTgv0RAuNv%252FFJPBRCdP8sHYkhYp7gEoCkEXDW0ddulWXUfTloKPUo%252BcXVGWVIurXvGaXz446vSMxVZWgLWojZ%252BEU4jVkpILOHpzWIfLjiZJ3tLy4MPl27XAZkx%7C300d5ac035ea72232419c041f58973e5;
+ theme=dark; _ga=GA1.2.561119685.1496632392; _gid=GA1.2.1669706876.1497225223
+Sec-WebSocket-Key: 7HNfuIUPLUT4vknBfeCP4A==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+GET wss://io.sosobtc.com/sosobtc.io/?chnl=okcoin&EIO=3&transport=websocket&sid=ETFdY92Cf1LA5uwiApH4 HTTP/1.1
+Host: io.sosobtc.com
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: https://io.sosobtc.com
+Sec-WebSocket-Version: 13
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch, br
+Accept-Language: en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4
+Cookie: io=ETFdY92Cf1LA5uwiApH4; Hm_lvt_647b37ce6da3a3a7972f5b7edd332547=1496830130,1496968986,1496977765,1497055775;
+ Hm_lpvt_647b37ce6da3a3a7972f5b7edd332547=1497227092; _gat=1; io=7QiYoOO8Z_pF2-C7CmrP; _ga=GA1.2.561119685.1496632392;
+  _gid=GA1.2.1669706876.1497225223; OID=aEj%252BuelTgv0RAuNv%252FFJPBRCdP8sHYkhYp7gEoCkEXDW0ddulWXUfTloKPUo%252BcXVGWVIurXvGaXz446vSMxVZWgLWojZ%252BEU4jVkpILOHpzWIfLjiZJ3tLy4MPl27XAZkx%7C300d5ac035ea72232419c041f58973e5;
+   theme=dark
+Sec-WebSocket-Key: uUGhYiRYSPzBOFdX/Wzdfg==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
