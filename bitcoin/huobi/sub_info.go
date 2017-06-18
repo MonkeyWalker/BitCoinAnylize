@@ -1,8 +1,8 @@
-package bitcoin
+package huobi
 
 import (
 	"github.com/gorilla/websocket"
-	"./myconstants"
+	"../myconstants"
 )
 
 const MARKET  = "market"

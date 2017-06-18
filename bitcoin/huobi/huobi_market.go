@@ -1,8 +1,8 @@
-package bitcoin
+package huobi
 
 import (
 	"log"
-	"./myconstants"
+	"../myconstants"
 	"github.com/gorilla/websocket"
 	"io"
 	"compress/gzip"
