@@ -26,23 +26,28 @@ type MarketBoard struct {
 type btc struct {
 	// 比特币的价格,每5秒请求一次
 	values []float32
+
 	//过去的数据相对于最新数据的差值！后的比例
-	trends []float32
+	valueTrends []float32
+
+	// 交易的数量
+	amounts []float32
+
+	// 交易的数量变化
+	amountTrends []float32
+
 };
-
-const URL  = "https://api.bitflyer.jp/v1/getboard"
-const ETC_BTC  = "?product_code=ETH_BTC"
-const BTC_JPY  = "?product_code=BTC_JPY"
-
 
 
 func (btc *btc) Init()  {
-	btc.values = make([]float32,1)
-	btc.trends = make([]float32,1)
+	btc.values = make([]float32,0)
+	btc.valueTrends = make([]float32,0)
+	btc.amounts = make([]float32,0)
+	btc.valueTrends = make([]float32,0)
 }
 
 func (btc *btc) PushTrend(trend float32) {
-	btc.trends = append(btc.trends, trend)
+	btc.valueTrends = append(btc.valueTrends, trend)
 }
 
 func (btc *btc) PushValue(value float32)  {
@@ -50,15 +55,15 @@ func (btc *btc) PushValue(value float32)  {
 }
 
 func (btc *btc) PopTrend()   {
-	if (len(btc.trends) < 1){
+	if (len(btc.valueTrends) < 1){
 		return
 	}
-	btc.trends = btc.trends[1:]
+	btc.valueTrends = btc.valueTrends[1:]
 }
 
 
 func (btc *btc) ClearTrend()   {
-	btc.trends = nil;
+	btc.valueTrends = nil;
 }
 
 func (btc *btc) PopValue()  {
@@ -71,9 +76,16 @@ func (btc *btc) PopValue()  {
 
 
 func Bitflyer() {
+	/**/
+	//for true{
+
+		fmt.Println()
+		go getExecutions();
+	//}
 	btc := &btc{}
 	btc.Init();
 	cacluteBTCTrend(btc)
+
 }
 
 //TODO:；利用实时汇率对日元进行计算
@@ -81,25 +93,29 @@ func getExchangeRate()  {}
 
 func cacluteBTCTrend(btc *btc)  {
 	for true{
-		//每10秒拉下来 一次数据
-		time.Sleep(10 * time.Second)
-		newest := getBoard(URL + BTC_JPY)
-		fmt.Printf("%s：%f","get the value : " , newest)
+		//每5秒拉下来 一次数据
+		time.Sleep(5 * time.Second)
+		newest := getBoard(URL + GET_BOARD + BTC_JPY)
+
 		if (len(btc.values) > 100){
 			btc.PopValue()
 		}
-		btc.PushValue(newest)
+		btc.PushValue(newest.Mid_Price)
 		//先清空 趋势
-		btc.ClearTrend();
+		btc.ClearTrend()
 		for  index := 0; index < len(btc.values) - 1;index++ {
-			btc.PushTrend(( newest - btc.values[index]) / newest)
+			trend := (newest.Mid_Price  - btc.values[index] )/ newest.Mid_Price
+			btc.PushTrend(trend)
 		}
-		fmt.Println(btc.trends)
+		fmt.Println()
 		fmt.Println(btc.values)
+
+		fmt.Println()
+		fmt.Println(btc.valueTrends)
 	}
 
 }
-func getBoard(url string) float32{
+func getBoard(url string) *MarketBoard{
 
 	re,error := http.Get(url);
 	if (error != nil){
@@ -109,6 +125,6 @@ func getBoard(url string) float32{
 	body, _ := ioutil.ReadAll(re.Body)
 	marketBoard := 	&MarketBoard{}
 	json.Unmarshal(body,marketBoard)
-	println(marketBoard.Mid_Price)
-	return marketBoard.Mid_Price * jpyExchange
+
+	return marketBoard
 }

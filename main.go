@@ -1,7 +1,6 @@
 package main
 
 import (
-	//"./bitcoin/huobi"
 	"./bitcoin/others"
 	"fmt"
 )
